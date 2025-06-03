@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% block title %}О компании{% endblock %}
+
+{% block content %}
+<h1>О компании</h1>
+
+<table>
+  <thead>
+    <tr><th>Год</th><th>Событие</th></tr>
+  </thead>
+  <tbody>
+    {% for record in history %}
+    <tr>
+      <td>{{ record.year }}</td>
+      <td>{{ record.event }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="2">Информация пока отсутствует.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

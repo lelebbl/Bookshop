@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+{% block title %}Словарь терминов{% endblock %}
+
+{% block content %}
+    <h2>Словарь терминов и понятий (FAQ)</h2>
+    {% for item in faqs %}
+        <div class="faq-item mb-4">
+            <h5><strong>{{ item.question }}</strong></h5>
+            <p>{{ item.answer|linebreaks|default:"Ответ скоро появится." }}</p>
+            <small>Добавлено: {{ item.created_at|date:"d.m.Y H:i" }}</small>
+        </div>
+    {% empty %}
+        <p>Вопросов пока нет.</p>
+    {% endfor %}
+
+    <hr>
+    <h4>Задать вопрос</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+{% endblock %}

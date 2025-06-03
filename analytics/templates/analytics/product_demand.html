@@ -1,0 +1,32 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4">Аналитика спроса на товары</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="alert alert-success shadow-sm">
+                <h5>🔝 Самый популярный товар</h5>
+                {% if most_popular %}
+                    <p><strong>{{ most_popular.name }}</strong></p>
+                    <p>Количество заказов: {{ most_popular.order_count }}</p>
+                {% else %}
+                    <p>Нет данных о заказах.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="alert alert-secondary shadow-sm">
+                <h5>🛒 Товар без спроса</h5>
+                {% if least_popular %}
+                    <p><strong>{{ least_popular.name }}</strong></p>
+                    <p>Этот товар не был ни разу заказан.</p>
+                {% else %}
+                    <p>Все товары были заказаны хотя бы один раз.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

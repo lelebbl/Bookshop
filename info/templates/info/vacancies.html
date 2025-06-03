@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+
+{% block title %}Vacancies{% endblock %}
+
+{% block content %}
+<h2>Current Vacancies</h2>
+<ul>
+    {% for vacancy in vacancies %}
+        <li>
+            <h4>{{ vacancy.title }}</h4>
+            <p>{{ vacancy.description }}</p>
+            <small>Published: {{ vacancy.published_at }}</small>
+        </li>
+    {% empty %}
+        <p>No vacancies at the moment.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

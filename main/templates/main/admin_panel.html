@@ -1,0 +1,59 @@
+{% extends "main/base.html" %}
+{% load tz %}
+{% block title %}Панель администратора{% endblock %}
+
+{% block content %}
+
+<div class="time-info">
+    <p><strong>Сегодня:</strong> {{ current_date }}</p>
+    <pre style="background:#f4f4f4; padding:10px;">{{ calendar_text }}</pre>
+</div>  
+
+<h2>Категории</h2>
+<a href="{% url 'main:category_create' %}" class="btn btn-primary">➕ Добавить категорию</a>
+<ul>
+    {% for category in categories %}
+        <li>
+            {{ category.name }} ({{ category.slug }})
+            <a href="{% url 'main:category_update' category.pk %}">✏️</a>
+            <a href="{% url 'main:category_delete' category.pk %}">🗑️</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h2>Товары</h2>
+<a href="{% url 'main:product_create' %}" class="btn btn-primary">➕ Добавить товар</a>
+
+<table border="1" cellspacing="0" cellpadding="8">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Категория</th>
+            <th>Создан (лок.)</th>
+            <th>Создан (UTC)</th>
+            <th>Изменён (лок.)</th>
+            <th>Изменён (UTC)</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }} $</td>
+            <td>{{ product.category.name }}</td>
+            <td>{{ product.created|date:"d/m/Y H:i" }}</td>
+            <td>{{ product.created|timezone:"UTC"|date:"d/m/Y H:i" }}</td>
+            <td>{{ product.updated|date:"d/m/Y H:i" }}</td>
+            <td>{{ product.updated|timezone:"UTC"|date:"d/m/Y H:i" }}</td>
+            <td>
+                <a href="{% url 'main:product_update' product.pk %}">✏️</a>
+                <a href="{% url 'main:product_delete' product.pk %}">🗑️</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

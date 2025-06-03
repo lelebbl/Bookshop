@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+<h1>Новости</h1>
+
+{% for news in news_list %}
+    <div class="news-item">
+        <h2>{{ news.title }}</h2>
+        {% if news.image %}
+            <img src="{{ news.image.url }}" alt="{{ news.title }}" style="max-width: 400px; height: auto;">
+        {% endif %}
+        <p>{{ news.content|linebreaks }}</p>
+        <small>Опубликовано: {{ news.published_at|date:"d M Y" }}</small>
+    </div>
+{% empty %}
+    <p>Новостей пока нет.</p>
+{% endfor %}
+
+{% endblock %}

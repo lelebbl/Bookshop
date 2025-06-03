@@ -1,0 +1,19 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4">Аналитика по категориям</h2>
+
+    <h2>Круговая диаграмма по категориям</h2>
+    <img src="data:image/png;base64,{{ pie_chart }}" alt="Pie Chart">
+    
+    <h2>Сгруппированный столбчатый график</h2>
+    <img src="data:image/png;base64,{{ grouped_bar_chart }}" alt="Grouped Bar Chart">
+    
+    <h2>Тепловая карта заказов</h2>
+    <img src="data:image/png;base64,{{ heatmap }}" alt="Heatmap">
+    
+    <h2>Накопленный график заказов по категориям</h2>
+    <img src="data:image/png;base64,{{ stacked_area_chart }}" alt="Stacked Area Chart">
+    
+</div>
+{% endblock %}

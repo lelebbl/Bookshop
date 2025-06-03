@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+{% block content %}
+<h2>Объём продаж по месяцам</h2>
+<img src="data:image/png;base64,{{ graphic_month }}" alt="График продаж по месяцам">
+
+<h2>Объём продаж по дням (текущий месяц)</h2>
+<img src="data:image/png;base64,{{ graphic_day }}" alt="График продаж по дням">
+
+<h2>Сумма по каждому заказу</h2>
+<img src="data:image/png;base64,{{ graphic_orders }}" alt="График заказов">
+{% endblock %}
